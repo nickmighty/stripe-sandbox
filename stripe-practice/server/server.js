@@ -10,14 +10,14 @@ app.use(express.static(process.env.STATIC_DIR));
 
 const stripeRoute = require('./stripe-routes/index');
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 
 // const testHostedAccount = "acct_1Jn9We2eYdyhFd5u";
 // const cus = "cus_KMnpYYZVKgPibR"
 
-app.route('/').get((req, res) => {
-  res.status(200).send('<h1>hit /</h1>');
+app.get((req, res) => {
+  res.sendFile('index.html')
 })
 
 app.get('/success', (req, res) => {

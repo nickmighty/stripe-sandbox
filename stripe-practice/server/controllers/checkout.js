@@ -11,9 +11,8 @@ async function createCheckoutSession(req, res) {
         const body = {
             // stripeCheckoutSessionId: session.id,
             // stripePublicKey: process.env.STRIPE_PUBLISHABLE_KEY
-        //     redirectUrl: session.url
+            redirectUrl: session.url
         }
-       
         res.status(200).json(body)
     } catch (error) {
         console.log(error);
