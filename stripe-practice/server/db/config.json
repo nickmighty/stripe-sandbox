@@ -1,0 +1,16 @@
+{
+    "productOne": {
+        "name": "Nike",
+        "description": "Black Nike skate shoes",
+        "amount": 5000,
+        "currency": "usd",
+        "quantity": 1
+        },
+    "productTwo": {
+        "name": "New Balance",
+        "description": "New Balance joggers",
+        "amount": 4500,
+        "currency": "usd",
+        "quantity": 1
+    }
+}
