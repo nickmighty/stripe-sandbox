@@ -1,7 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const products = require('../db/config.json');
+const products = require('../db/products.json');
 
 async function createCheckoutSession(req, res) {
+    const user = req.user
     try {
         let sessionConfig;
         if (req.body.item) {
@@ -41,6 +42,7 @@ function setupBaseSessionConfig(request) {
         payment_method_types: ['card'],
         success_url: `${request.callbackUrl}/?purchaseResult=success`,
         cancel_url: `${request.callbackUrl}/?purchaseResult=failed`,
+        client_reference_id: ''
     }
     return config
 }

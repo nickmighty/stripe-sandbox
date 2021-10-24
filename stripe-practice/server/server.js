@@ -28,6 +28,7 @@ app.get('/failure', (req, res) => {
   res.send('<h1>failure</h1>')
 })
 
+
 app.use('/api', stripeRoute);
 
 
