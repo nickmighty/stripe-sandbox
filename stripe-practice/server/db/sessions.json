@@ -1,22 +1,56 @@
 [
   {
-    "1635123658323": {
-      "user": {
-        "name": "john smith",
-        "address": "113 address",
-        "info": "info here",
-        "id": 1
-      }
-    }
+    "sessionId": 1635197234889,
+    "userId": 1,
+    "productId": "productOne",
+    "status": "ongoing"
   },
   {
-    "1635123666744": {
-      "user": {
-        "name": "john smith",
-        "address": "113 address",
-        "info": "info here",
-        "id": 1
-      }
-    }
+    "sessionId": 1635197276668,
+    "userId": 1,
+    "productId": "productTwo",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197348209,
+    "userId": 1,
+    "productId": "productTwo",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197388316,
+    "userId": 1,
+    "productId": "productOne",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197468118,
+    "userId": 1,
+    "productId": "productTwo",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197523081,
+    "userId": 1,
+    "productId": "productTwo",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197552991,
+    "userId": 1,
+    "productId": "productOne",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197589298,
+    "userId": 1,
+    "productId": "productOne",
+    "status": "ongoing"
+  },
+  {
+    "sessionId": 1635197794405,
+    "userId": 1,
+    "productId": "productTwo",
+    "status": "ongoing"
   }
 ]

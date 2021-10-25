@@ -1,12 +1,14 @@
-{
+[{
     "1": {
         "name": "john smith",
         "address": "113 address",
-        "info": "info here"
+        "info": "info here",
+        "purchasedItems": []
     },
     "2": {
         "name": "doug b",
         "address": "444 forst address",
-        "info": "more info here"
+        "info": "more info here",
+        "purchasedItems": []
     }
-}
+}]

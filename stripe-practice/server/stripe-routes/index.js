@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const createCheckoutSession = require('../controllers/checkout');
-const users = require('../db/users.json');
+const { users } = require('../db/index');
 
 function dbUsers(req, res, next) {
     const user = 1
@@ -10,6 +10,7 @@ function dbUsers(req, res, next) {
 
 
 router.post('/checkout', dbUsers, createCheckoutSession)
+
 
 
 
