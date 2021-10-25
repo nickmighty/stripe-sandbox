@@ -4,7 +4,7 @@ const users = require('../db/users.json');
 
 function dbUsers(req, res, next) {
     const user = 1
-    res.user = users[user];
+    res.user = {...users[user], id: user};
     next();
 }
 
