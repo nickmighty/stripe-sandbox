@@ -12,5 +12,15 @@
         "amount": 4500,
         "currency": "usd",
         "quantity": 1
+    },
+    "subscriptionOne": {
+        "pricingPlanId": "prod_KKaFFdRRcUvuBM",
+        "name": "Car wash",
+        "description": "money car wash",
+        "amount": "9.99",
+        "priceId": "price_1Jfv59GVJbz6L7DwTfQI1G8D",
+        "currency": "usd",
+        "quantity": 1
     }
+    
 }

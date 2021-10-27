@@ -4,39 +4,44 @@
 
 
 // code wars function
-Array.prototype.ofType = function (type) {
-    return this.filter(e => {
-        if (e.type === type.name) {
-            return type.name;
-            // console.log(e.type)
-            // console.log(type)
-        }
+// Array.prototype.ofType = function (type) {
+//     return this.filter(e => {
+//         if (e.type === type.name) {
+//             return type.name;
+//             // console.log(e.type)
+//             // console.log(type)
+//         }
         
-        // console.log()
-    })
+//         // console.log()
+//     })
+// }
+
+// // check this out //
+// // function whatsup(greetings, name) {
+// //   return `${greetings} ${name}`;
+// // }
+// // console.log(whatsup(whatsup.name, 'john'));
+
+// function Human() { this.type = 'Human';  }
+// function Teacher() { this.type = 'Teacher' };
+
+// Teacher.prototype = new Human();
+// // Teacher.prototype.constructor = Human;
+
+// var teacher = new Teacher();
+// var human = new Human();
+// let arrOne = [teacher, human];
+
+// let arr = [{a: 5, b: 5}, false, [], e=>e, human, teacher ];
+
+// //
+// console.log(arr.ofType(Human));
+
+
+
+const hey = null;
+const okay = {
+
 }
 
-// check this out //
-// function whatsup(greetings, name) {
-//   return `${greetings} ${name}`;
-// }
-// console.log(whatsup(whatsup.name, 'john'));
-
-function Human() { this.type = 'Human';  }
-function Teacher() { this.type = 'Teacher' };
-
-Teacher.prototype = new Human();
-Teacher.prototype.constructor = Teacher;
-
-var teacher = new Teacher();
-var human = new Human();
-let arrOne = [teacher, human];
-
-let arr = [{a: 5, b: 5}, false, [], e=>e, human, teacher ];
-
-//
-console.log(arr.ofType(Human));
-
-
-
-
+console.log(hey === 'object')

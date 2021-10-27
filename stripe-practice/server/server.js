@@ -11,11 +11,11 @@ app.use(express.static(process.env.STATIC_DIR));
 const stripeRoute = require('./stripe-routes/index');
 
 
-// const testHostedAccount = "acct_1Jn9We2eYdyhFd5u";
-// const cus = "cus_KMnpYYZVKgPibR"
 
 const stripeWebhooks = require('./controllers/webhooks');
+// must be above express.json()
 app.post('/stripe-webhooks', express.raw({type: 'application/json'}), stripeWebhooks);
+
 
 app.use(express.json());
 app.get((req, res) => {

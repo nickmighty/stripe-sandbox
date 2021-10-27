@@ -1,13 +1,20 @@
 const router = require('express').Router();
 const createCheckoutSession = require('../controllers/checkout');
-const { users } = require('../db/index');
+const testRoute = require('../controllers/testroute');
+const { queryAll } = require('../db/index');
 
-function dbUsers(req, res, next) {
+const users = "users";
+
+async function dbUsers(req, res, next) {
+    const currentUsers = await queryAll(users);
     const user = 1
-    res.user = {...users[user], id: user};
+    const thisUser = currentUsers.find(allUsers => allUsers.id === user);
+    res.user = thisUser;
     next();
 }
 
+
+router.get('/test/:test', dbUsers, testRoute)
 
 router.post('/checkout', dbUsers, createCheckoutSession)
 
