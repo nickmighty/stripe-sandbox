@@ -2,6 +2,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { queryAll, updateDatabase } = require('../db/index');
 const sessions = 'sessions';
 const users = 'users';
+const webhooktypes = {
+    checkSessionCompleted: "checkout.session.completed",
+    customerSubscriptionUpdated: "customer.subscription.updated",
+    customerSubscriptionDeleted: "customer.subscription.deleted",
+    // customerSubscriptionSuccess: "customer.subscription.created"
+}
 
 async function stripeWebhooks(req, res) {
     try {
@@ -9,16 +15,27 @@ async function stripeWebhooks(req, res) {
         const event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET);
         let session;
         switch(event.type) {
-            case "checkout.session.completed":
+            case webhooktypes.checkSessionCompleted:
+                console.log(event.type)
                 session = event.data.object;
-                console.log(event.data.object)
                 await onCheckoutSessionCompleted(session);
-            case "customer.subscription.updated":
+                break;
+            case webhooktypes.customerSubscriptionSuccess:
+                console.log(webhooktypes.customerSubscriptionSuccess)
                 session = event.data.object;
-                console.log(event.data.object)
-            break;
+                await onCheckoutSessionCompleted(session);
+                break;
+            case webhooktypes.customerSubscriptionUpdated:
+                console.log(webhooktypes.checkSessionCompleted);
+                session = event.data.object;
+                break; 
+            case webhooktypes.customerSubscriptionDeleted:
+                console.log(webhooktypes.customerSubscriptionDeleted)
+                session = event.data.object;
+                console.log(event.data.object);
+                break;
             default:
-                // console.log(`default switch: ${event.type}`);
+                console.log(`default switch: ${event.type}`);
         } 
 
         res.json({received: true});
@@ -39,11 +56,15 @@ async function onCheckoutSessionCompleted(session) {
         const currentSessions = await queryAll(sessions);
         const purchaseSessionId = session.client_reference_id;
         const stripeCustomerId = session.customer
-        const { productId, userId, pricingPlanId } = currentSessions.find(order => order.sessionId === Number(purchaseSessionId));
-        if (productId) {
-            await fullfilProductPurchase(userId, productId, purchaseSessionId, stripeCustomerId);
+        
+        const sessionsData = currentSessions.find(order => order.sessionId === Number(purchaseSessionId));
+
+        if (session) {
+            // products
+            await fullfilProductPurchase(sessionsData.userId, sessionsData.productId, purchaseSessionId, stripeCustomerId);
         } else {
-            pricingPlanId
+            // subscriptions
+            await fullfilProductPurchase(sessionsData.userId, sessionsData.priceId, purchaseSessionId, stripeCustomerId);
         }
     } catch (error) {
         console.log(`error: ${error}`)
@@ -57,13 +78,13 @@ async function fullfilProductPurchase(userId, productId, sessionId, stripeCustom
                 order.status = "completed";
             }
                 return order;
-            })       
+            })     
+            // console.log(updatedSession)  
         updateDatabase(sessions, updatedSession);
 
         const currentUsers = await queryAll(users);
         const updatedUsers = currentUsers.map(user => {
             if (user.id === userId) {
-                console.log(user.customerId === stripeCustomerId)
                 let tempArray = user.purchasedItems;
                 tempArray.push(productId);
                 user.purchasedItems = tempArray;
@@ -77,9 +98,5 @@ async function fullfilProductPurchase(userId, productId, sessionId, stripeCustom
     } 
 }
 
-
-//////////////////////////////////
-//   //
-//////////////////////////////////
 
 module.exports = stripeWebhooks;

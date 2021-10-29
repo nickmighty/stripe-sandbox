@@ -1,2 +1,2 @@
 # Code_pratice5
-more
+stripe practice

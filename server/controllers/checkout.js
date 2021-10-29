@@ -74,7 +74,6 @@ function setupBaseSessionConfig(request, sessionId, customerId) {
 async function updateSession(userId, productId, setOption) {
     const currentSessions = await queryAll(sessions);
     if (setOption === 'subscribe') {
-        console.log(productId)
         let sessionId = Date.now();
         currentSessions.push({ sessionId, userId, priceId: productId , status: "ongoing" });
         updateDatabase(sessions, currentSessions)
